@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    HTML sila
+    <!-- 
+    <script src="script.js"></script> -->
+
+    <script>
+        let newUrl = "https://script.google.com/macros/s/AKfycbyEZbu3XvpV2unf74Vwcbvp7Gb3ecV3xBNidmF9J992wNFE6QcE-hTLdAUq9RiajZvFhg/exec";
+        let parametr = {
+
+            contents: {
+                url: "https://docs.google.com/spreadsheets/d/1NM45z4ys_4J7MsW-nRoGwiM8jowNCIbetRbAEp5Hllw/edit#gid=0",
+                commands: [
+                    {
+                        sheet: "Лист1",
+                        range: "B2:C4",
+                        values: [
+                            ["Test1", "Test2", "Test3"],
+                            ["One1", "Two2", "Three3"],
+                        ],
+                        type: "setValues"
+                    },
+                ]
+            }
+        }
+
+
+        fetch(newUrl, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json',
+
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            'mode': 'no-cors',
+            body: JSON.stringify(parametr),
+        }).then(
+
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    console.log(response);
+                    return;
+                }
+
+                // Examine the text in the response  
+                response.json().then(function (data) {
+                    console.log(data);
+                });
+            }
+        )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+    </script>
+</body>
+
+</html>
